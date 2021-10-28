@@ -18,6 +18,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'id',
             'product_vendor',
             'product_name',
+            'get_absolute_url',
             'get_product_image',
             'get_product_thumbnail',
             'product_category',

@@ -13,14 +13,14 @@ class ProductList(APIView):
         return Response(serializer.data)
 
 class ProductDetail(APIView):
-    def get_object(self, category_slug, product_slug):
+    def get_object(self, product_category_slug, product_slug):
         try:
-            return Product.objects.filter(category__slug=category_slug).get(slug=product_slug)
+            return Product.objects.filter(product_category__slug=product_category_slug).get(slug=product_slug)
         except Product.DoesNotExist:
             raise Http404
 
-    def get(self, request, category_slug, product_slug, format=None):
-        product = self.get_object(category_slug, product_slug)
+    def get(self, request, product_category_slug, product_slug, format=None):
+        product = self.get_object(product_category_slug, product_slug)
         serializer = ProductSerializer(product)
         return Response(serializer.data)
 

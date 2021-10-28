@@ -22,6 +22,7 @@ class Category(models.Model):
 class Product(models.Model):
     product_vendor  = models.ForeignKey(User, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=150)
+    slug = models.SlugField()
     product_image = models.ImageField(upload_to="uploads/", blank=True, null=True)
     product_thumbnail = models.ImageField(upload_to="uploads/", blank=True, null=True)
     product_category = models.ForeignKey(Category,  related_name="categories", on_delete=models.CASCADE)
