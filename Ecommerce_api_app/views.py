@@ -1,9 +1,9 @@
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer, CategorySerializer
 from rest_framework.views import APIView
 from django.http import Http404
-from .models import Product
+from .models import Category, Product
 
 
 class ProductList(APIView):
@@ -24,3 +24,14 @@ class ProductDetail(APIView):
         serializer = ProductSerializer(product)
         return Response(serializer.data)
 
+class CategoryDetail(APIView):
+    def get_object(self, product_category_slug):
+        try:
+            return Category.objects.get(slug=product_category_slug)
+        except Product.DoesNotExist:
+            raise Http404
+
+    def get(self, request, product_category_slug, format=None):
+        category = self.get_object(product_category_slug)
+        serializer = CategorySerializer(category)
+        return Response(serializer.data)
