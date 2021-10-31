@@ -25,7 +25,7 @@ class Product(models.Model):
     slug = models.SlugField()
     product_image = models.ImageField(upload_to="uploads/", blank=True, null=True)
     product_thumbnail = models.ImageField(upload_to="uploads/", blank=True, null=True)
-    product_category = models.ForeignKey(Category,  related_name="categories", on_delete=models.CASCADE)
+    product_category = models.ForeignKey(Category,  related_name="products", on_delete=models.CASCADE)
     product_price = models.DecimalField(max_digits = 6, decimal_places = 2)
     stock = models.IntegerField()
     description = models.TextField(blank=True, null=True)
