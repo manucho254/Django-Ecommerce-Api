@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
     'accounts',
-    'vuefrontend',
 ]
 
 CORS_ALLOWED_ORIGINS = [
